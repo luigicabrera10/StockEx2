@@ -6,7 +6,6 @@ import MainDashboard from './views/dashboard/default';
 import NFTMarketplace from './views/dashboard/marketplace';
 import Profile from './views/dashboard/profile';
 import DataTables from './views/dashboard/dataTables';
-import RTL from './views/dashboard/rtl';
 
 // Auth Imports
 import SignInCentered from './views/home/signIn';
