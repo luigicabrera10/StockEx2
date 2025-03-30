@@ -10,6 +10,7 @@ import {
 	MenuButton,
 	MenuItem,
 	MenuList,
+	Box,
 	Text,
 	useColorModeValue,
 	useColorMode
@@ -26,6 +27,15 @@ import { MdNotificationsNone, MdInfoOutline } from 'react-icons/md';
 import { IoMdMoon, IoMdSunny } from 'react-icons/io';
 import { FaEthereum } from 'react-icons/fa';
 import routes from '../../routes';
+
+import { useApi, useAccount, useBalance, useBalanceFormat } from '@gear-js/react-hooks';
+import { useState } from 'react';
+import { AccountsModal } from '../../components/layout/header/account-info/accounts-modal';
+import { AccountButton } from '../../components/layout/header/account-info/account-button';
+
+import VaraLogo from '/src/assets/images/vara/vara_logo.png';
+
+
 export default function HeaderLinks(props: { secondary: boolean }) {
 	const { secondary } = props;
 	const { colorMode, toggleColorMode } = useColorMode();
@@ -43,6 +53,25 @@ export default function HeaderLinks(props: { secondary: boolean }) {
 		'14px 17px 40px 4px rgba(112, 144, 176, 0.06)'
 	);
 	const borderButton = useColorModeValue('secondaryGray.500', 'whiteAlpha.200');
+
+	const { account, accounts } = useAccount();
+	const [isModalOpen, setIsModalOpen] = useState(false);
+
+	const { balance } = useBalance(account?.address);
+	const { getFormattedBalance } = useBalanceFormat();
+
+	const formattedBalance = balance ? getFormattedBalance(balance) : {value: '0.00', unit: 'TVARA'};
+	const varaBalance = parseFloat(formattedBalance.value).toFixed(4);
+
+
+	const openModal = () => {
+		setIsModalOpen(true);
+	 };
+  
+	const closeModal = () => {
+		setIsModalOpen(false);
+	};
+
 	return (
 		<Flex
 			w={{ sm: '100%', md: 'auto' }}
@@ -53,7 +82,7 @@ export default function HeaderLinks(props: { secondary: boolean }) {
 			p='10px'
 			borderRadius='30px'
 			boxShadow={shadow}>
-			<SearchBar
+			{/* <SearchBar
 				mb={() => {
 					if (secondary) {
 						return { base: '10px', md: 'unset' };
@@ -62,28 +91,15 @@ export default function HeaderLinks(props: { secondary: boolean }) {
 				}}
 				me='10px'
 				borderRadius='30px'
-			/>
-			<Flex
-				bg={ethBg}
-				display={secondary ? 'flex' : 'none'}
-				borderRadius='30px'
-				ms='auto'
-				p='6px'
-				align='center'
-				me='6px'>
-				<Flex align='center' justify='center' bg={ethBox} h='29px' w='29px' borderRadius='30px' me='7px'>
-					<Icon color={ethColor} w='9px' h='14px' as={FaEthereum} />
-				</Flex>
-				<Text w='max-content' color={ethColor} fontSize='sm' fontWeight='700' me='6px'>
-					1,924
-					<Text as='span' display={{ base: 'none', md: 'unset' }}>
-						{' '}
-						ETH
-					</Text>
-				</Text>
-			</Flex>
+			/> */}
+
+			<Box marginLeft='10px'></Box>
+
+
+			
 			<SidebarResponsive routes={routes} />
-			<Menu>
+
+			{/* <Menu>
 				<MenuButton p='0px'>
 					<Icon mt='6px' as={MdNotificationsNone} color={navbarIcon} w='18px' h='18px' me='10px' />
 				</MenuButton>
@@ -155,7 +171,8 @@ export default function HeaderLinks(props: { secondary: boolean }) {
 						</Link>
 					</Flex>
 				</MenuList>
-			</Menu>
+			</Menu> */}
+
 
 			<Button
 				variant='no-hover'
@@ -167,14 +184,38 @@ export default function HeaderLinks(props: { secondary: boolean }) {
 				w='max-content'
 				onClick={toggleColorMode}>
 				<Icon
-					me='10px'
+					me='0px'
 					h='18px'
 					w='18px'
 					color={navbarIcon}
 					as={colorMode === 'light' ? IoMdMoon : IoMdSunny}
 				/>
 			</Button>
-			<Menu>
+
+
+			<Flex
+				bg={ethBg}
+				display={secondary ? 'flex' : 'none'}
+				borderRadius='30px'
+				ms='auto'
+				p='6px'
+				align='center'
+				me='6px'
+				marginX='10px'>
+				<Flex align='center' justify='center' bg={ethBox} h='29px' w='29px' borderRadius='30px' me='7px'>
+					<img src={VaraLogo} alt="Vara Logo" style={{ width: 'auto', height: '20px' }}/>
+				</Flex>
+				<Text w='max-content' color={ethColor} fontSize='15px' fontWeight='700' me='6px'>
+					{varaBalance}
+					<Text as='span' fontSize='15px' display={{ base: 'none', md: 'unset' }}>
+						{' '}
+						TVARA
+					</Text>
+				</Text>
+			</Flex>
+
+
+			{/* <Menu>
 				<MenuButton p='0px'>
 					<Avatar
 						_hover={{ cursor: 'pointer' }}
@@ -218,7 +259,23 @@ export default function HeaderLinks(props: { secondary: boolean }) {
 						</MenuItem>
 					</Flex>
 				</MenuList>
-			</Menu>
+				
+				
+			</Menu> */}
+
+
+			{account ? (
+				<AccountButton address={account.address} name={account.meta.name} onClick={openModal} />
+			) : (
+				// <Button  text="Sign in" onClick={openModal} />
+				<Button onClick={openModal} > Sign in </Button>
+			)}
+
+			{/* <AccountButton address={account.address} name={account.meta.name} onClick={openModal} /> */}
+			{isModalOpen && <AccountsModal accounts={accounts} close={closeModal} />}
+
+			<Box marginLeft='10px'></Box>
+
 		</Flex>
 	);
 }
