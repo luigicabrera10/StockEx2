@@ -10,6 +10,9 @@ import DataTables from './views/dashboard/dataTables';
 // Auth Imports
 import SignInCentered from './views/home/signIn';
 
+// StockEx imports
+import StockMarket from './views/dashboard/stockmarket';
+
 const routes = [
 	{
 		name: 'Main Dashboard',
@@ -47,6 +50,18 @@ const routes = [
 		icon: <Icon as={MdLock} width='20px' height='20px' color='inherit' />,
 		component: SignInCentered,
 	},
+
+
+	// Stock Ex routes
+	{
+		name: 'Stock Market',
+		layout: '/dashboard',
+		path: '/stock-market',
+		icon: <Icon as={MdOutlineShoppingCart} width='20px' height='20px' color='inherit' />,
+		component: StockMarket,
+		secondary: false
+	},
+
 ];
 
 export default routes;
