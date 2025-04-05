@@ -20,20 +20,30 @@ class RealTimeStockService {
         return currentTime.diff(cachedTime, 'seconds').seconds < this.expirationTime;
     }
 
-    async _getFromRedis(stock) {
+    async _getFromRedis() {
         if (!this.redisClient) return null;
 
         const start = Date.now(); // Start timer
-        const cachedData = await this.redisClient.get('CURRENT_'+stock);
+        const cachedData = await this.redisClient.get('REAL_TIME_DATA');
         const duration = Date.now() - start; // Calculate duration
-        console.log(`Redis fetch time for ${stock}: ${duration}ms`);
+        console.log(`Redis fetch time for all stocks: ${duration}ms`);
 
         if (cachedData) {
             try {
-                return cachedData; 
+                return cachedData; // Parse the JSON string
             } catch (err) {
-                console.error(`Redis read error for ${stock}:`, err.message);
+                console.error(`Redis read error:`, err.message);
             }
+        }
+        return null;
+    }
+
+    async _setToRedis(data) {
+        if (!this.redisClient) return;
+        try {
+            await this.redisClient.set('REAL_TIME_DATA', JSON.stringify(data)); // Store as JSON string
+        } catch (err) {
+            console.error(`Redis write error:`, err.message);
         }
     }
 
@@ -62,47 +72,53 @@ class RealTimeStockService {
         return false;
     }
 
-    async _setToRedis(stock, data) {
-        if (!this.redisClient) return;
-        try {
-            await this.redisClient.set('CURRENT_'+stock, JSON.stringify(data)); // Store as JSON string
-        } catch (err) {
-            console.error(`Redis write error for ${stock}:`, err.message);
-        }
-    }
-
     async getRealTimeStockPrices(stocks) {
-        for (const stock of stocks) {
-            if (!this._isStockSupported(stock)) {
-                return { error: `The stock ${stock} is not supported.` };
-            }
-        }
+        let cachedData = await this._getFromRedis();
 
         const results = {};
+        const stocksToFetch = [];
 
         for (const stock of stocks) {
-            try {
-                const cachedData = await this._getFromRedis(stock);
-
-                if (cachedData) {
-                    if (this._checkDataExpiration(cachedData) || this._isDataFromLastOpenMinutes(cachedData)) {
-                        console.log(`Using cached data for ${stock}`);
-                        results[stock] = cachedData;
-                        continue;
-                    }
-                }
-
-                const stockData = await this._stockRealTimePriceApiCall(stock);
-                if (stockData) {
-                    await this._setToRedis(stock, stockData);
-                    results[stock] = stockData;
-                } else {
-                    results[stock] = { error: `Could not fetch data for ${stock}` };
-                }
-            } catch (error) {
-                console.error(`Error processing stock ${stock}:`, error.message);
-                results[stock] = { error: `Error fetching data for ${stock}` };
+            if (!this._isStockSupported(stock)) {
+                results[stock] = { error: `The stock ${stock} is not supported.` };
+                continue;
             }
+
+            if (cachedData && cachedData[stock]) {
+                const stockData = cachedData[stock];
+                if (this._checkDataExpiration(stockData) || this._isDataFromLastOpenMinutes(stockData)) {
+                    console.log(`Using cached data for ${stock}`);
+                    results[stock] = stockData;
+                    continue;
+                }
+            }
+
+            stocksToFetch.push(stock); // Add to fetch list if not in cache or expired
+        }
+
+        if (stocksToFetch.length > 0) {
+            for (const stock of stocksToFetch) {
+                try {
+                    const stockData = await this._stockRealTimePriceApiCall(stock);
+                    if (stockData) {
+                        results[stock] = stockData;
+
+                        // Update the cached data
+                        if (!cachedData) {
+                            cachedData = {};
+                        }
+                        cachedData[stock] = stockData;
+                    } else {
+                        results[stock] = { error: `Could not fetch data for ${stock}` };
+                    }
+                } catch (error) {
+                    console.error(`Error processing stock ${stock}:`, error.message);
+                    results[stock] = { error: `Error fetching data for ${stock}` };
+                }
+            }
+
+            // Save updated data to Redis
+            await this._setToRedis(cachedData);
         }
 
         return results;
