@@ -20,7 +20,7 @@
 
 */
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 // Chakra imports
 import { Box, Button, Flex, Grid, Link, Text, useColorModeValue, SimpleGrid } from '@chakra-ui/react';
@@ -49,6 +49,7 @@ import { Box, Button, Flex, Grid, Link, Text, useColorModeValue, SimpleGrid } fr
 import SearchBar from './components/searchBar';
 import MarketTable from './components/MarketTable';
 
+import { fetchAllRealTimeStocks } from '@/utils/data/stockCurrentPrice';
 
 
 export default function Marketplace() {
@@ -57,181 +58,37 @@ export default function Marketplace() {
 	const textColorBrand = useColorModeValue('brand.500', 'white');
 
 	// Search filter var
+	const [StocksPrices, setStocksPrices] = useState<any>([]);
 	const [SearchFilter, setSearchFilter] = useState<string>('');
+
+	useEffect(() => {
+		async function getData() {
+		  const data = await fetchAllRealTimeStocks();
+		  setStocksPrices(data);
+		}
+		getData();
+  	}, []);
 
 	const handleSearchChange = (value: string) => {
 		console.log('Search Value: ', value);
 		setSearchFilter(value);
 	} 
 
-	const getMarketData = () => {
-
-		return [
-			{
-				stock: 'AAPL',
-				currentPrice: 150.00,
-				lastClosedPrice: 178.00,
-				volume: 800000,
-				priceProfit: [125, 1.50],
-				trade: true,				
-			},
-			{
-				stock: 'TSLA',
-				currentPrice: 180.00,
-				lastClosedPrice: 150.00,
-				volume: 400000,
-				priceProfit: [253, 1.50],
-				trade: true,				
-			},
-			{
-				stock: 'MSFT',
-				currentPrice: 280.00,
-				lastClosedPrice: 275.00,
-				volume: 1200000,
-				priceProfit: [300, 1.80],
-				trade: true,
-			},
-			{
-				stock: 'GOOGL',
-				currentPrice: 2700.00,
-				lastClosedPrice: 2650.00,
-				volume: 900000,
-				priceProfit: [2750, 2.00],
-				trade: true,
-			},
-			{
-				stock: 'NVDA',
-				currentPrice: 220.00,
-				lastClosedPrice: 210.00,
-				volume: 600000,
-				priceProfit: [230, 1.40],
-				trade: true,
-			},
-			{
-				stock: 'AMZN',
-				currentPrice: 3400.00,
-				lastClosedPrice: 3300.00,
-				volume: 1100000,
-				priceProfit: [3450, 2.50],
-				trade: true,
-			},
-			{
-				stock: 'META',
-				currentPrice: 320.00,
-				lastClosedPrice: 310.00,
-				volume: 700000,
-				priceProfit: [330, 1.20],
-				trade: true,
-			},
-			{
-				stock: 'NFLX',
-				currentPrice: 500.00,
-				lastClosedPrice: 480.00,
-				volume: 500000,
-				priceProfit: [510, 1.80],
-				trade: true,
-			},
-			{
-				stock: 'TSM',
-				currentPrice: 120.00,
-				lastClosedPrice: 115.00,
-				volume: 800000,
-				priceProfit: [125, 1.30],
-				trade: true,
-			},
-			{
-				stock: 'JPM',
-				currentPrice: 150.00,
-				lastClosedPrice: 145.00,
-				volume: 400000,
-				priceProfit: [155, 1.10],
-				trade: true,
-			},
-			{
-				stock: 'XOM',
-				currentPrice: 100.00,
-				lastClosedPrice: 95.00,
-				volume: 300000,
-				priceProfit: [105, 1.20],
-				trade: true,
-			},
-			{
-				stock: 'UNH',
-				currentPrice: 450.00,
-				lastClosedPrice: 440.00,
-				volume: 200000,
-				priceProfit: [460, 1.50],
-				trade: true,
-			},
-			{
-				stock: 'V',
-				currentPrice: 230.00,
-				lastClosedPrice: 225.00,
-				volume: 350000,
-				priceProfit: [235, 1.10],
-				trade: true,
-			},
-			{
-				stock: 'MA',
-				currentPrice: 370.00,
-				lastClosedPrice: 360.00,
-				volume: 250000,
-				priceProfit: [380, 1.30],
-				trade: true,
-			},
-			{
-				stock: 'PEP',
-				currentPrice: 160.00,
-				lastClosedPrice: 155.00,
-				volume: 450000,
-				priceProfit: [165, 1.20],
-				trade: true,
-			},
-			{
-				stock: 'KO',
-				currentPrice: 60.00,
-				lastClosedPrice: 58.00,
-				volume: 500000,
-				priceProfit: [62, 1.10],
-				trade: true,
-			},
-			{
-				stock: 'INTC',
-				currentPrice: 50.00,
-				lastClosedPrice: 48.00,
-				volume: 600000,
-				priceProfit: [52, 1.20],
-				trade: true,
-			},
-			{
-				stock: 'AMD',
-				currentPrice: 110.00,
-				lastClosedPrice: 105.00,
-				volume: 700000,
-				priceProfit: [115, 1.30],
-				trade: true,
-			},
-			{
-				stock: 'CRM',
-				currentPrice: 250.00,
-				lastClosedPrice: 240.00,
-				volume: 400000,
-				priceProfit: [260, 1.50],
-				trade: true,
-			},
-			{
-				stock: 'ORCL',
-				currentPrice: 90.00,
-				lastClosedPrice: 85.00,
-				volume: 300000,
-				priceProfit: [95, 1.20],
-				trade: true,
-			}
-		];
+	const fixData = (data: any) => {
+		let finalResult = Object.entries(data).map(([stock, info]: [string, any]) => ({
+			stock: stock,
+			currentPrice: info.price,
+			lastClosedPrice: info.previousClose,
+			// volume: info.volume,
+			volume: 0,
+			priceProfit: [info.difference, info.differencePercent],
+		}));
+		return finalResult;
 	}
 
-	const marketData = getMarketData();
-
+	const marketData = fixData(StocksPrices);
+	console.log("Final Data: ", marketData);
+	
 	return (
 		<Box pt={{ base: '180px', md: '80px', xl: '80px' }}>
 			

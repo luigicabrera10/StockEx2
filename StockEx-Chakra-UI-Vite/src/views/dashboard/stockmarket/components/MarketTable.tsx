@@ -16,6 +16,7 @@ import Menu from '../../../../components/menu/MainMenu';
 
 // StockEx imports
 import StockIcon from '@/utils/data/StockIcon';
+import { useEffect } from 'react';
 
 // type RowObj = {
 // 	name: [string, boolean];
@@ -206,6 +207,11 @@ export default function MarketTable(props: { tableData: any }) {
 		
 	];
 	const [ data, setData ] = React.useState(() => [ ...defaultData ]);
+
+	useEffect(() => {
+        setData([...tableData]);
+    }, [tableData]);
+
 	const table = useReactTable({
 		data,
 		columns,
