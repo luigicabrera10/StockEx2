@@ -45,6 +45,31 @@ class RealTimeStockService {
         }
     }
 
+    _isMarketOpen() {
+        const now = DateTime.now().setZone('America/New_York'); // Set to New York timezone
+        const dayOfWeek = now.weekday; // 1 = Monday, 7 = Sunday
+        const time = now.toFormat('HH:mm');
+
+        // Market is open Monday to Friday, 9:30 AM to 4:00 PM
+        const isWeekday = dayOfWeek >= 1 && dayOfWeek <= 5;
+        const isWithinMarketHours = time >= '09:30' && time <= '16:00';
+
+        return isWeekday && isWithinMarketHours;
+    }
+
+    _isDataFromLastOpenMinutes(data) {
+        const lastRefresh = DateTime.fromISO(data.lastRefresh).setZone('America/New_York');
+        const now = DateTime.now().setZone('America/New_York');
+        const marketClosingTime = lastRefresh.set({ hour: 16, minute: 0, second: 0, millisecond: 0 });
+
+        // If the market is closed and the data was fetched after the market closed
+        if (!this._isMarketOpen() && (lastRefresh > marketClosingTime || now.diff(lastRefresh, 'hours').hours < 12)) {
+            return true;
+        }
+
+        return false;
+    }
+
     async _setToRedis(stock, data) {
         if (!this.redisClient) return;
         try {
@@ -67,10 +92,12 @@ class RealTimeStockService {
             try {
                 const cachedData = await this._getFromRedis(stock);
 
-                if (cachedData && this._checkDataExpiration(cachedData)) {
-                    console.log(`Using cached data for ${stock}`);
-                    results[stock] = cachedData;
-                    continue;
+                if (cachedData) {
+                    if (this._checkDataExpiration(cachedData) || this._isDataFromLastOpenMinutes(cachedData)) {
+                        console.log(`Using cached data for ${stock}`);
+                        results[stock] = cachedData;
+                        continue;
+                    }
                 }
 
                 const stockData = await this._stockRealTimePriceApiCall(stock);
@@ -119,8 +146,6 @@ class RealTimeStockService {
         }
     }
 }
-
-
 
 
 const STOCK_API_KEY = process.env.REAL_TIME_API_KEY;
