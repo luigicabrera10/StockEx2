@@ -10,18 +10,6 @@ class RealTimeStockService {
         this.expirationTime = expirationTime;
     }
 
-    async init() {
-        if (this.redisClient && !this.redisClient.isOpen) {
-            try {
-                await this.redisClient.connect();
-                console.log("Redis connected");
-            } catch (err) {
-                console.error("Redis connection failed:", err.message);
-                this.redisClient = null;
-            }
-        }
-    }
-
     _isStockSupported(symbol) {
         return allSupportedStocks.includes(symbol);
     }
