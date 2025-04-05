@@ -1,10 +1,33 @@
 require('dotenv').config();
 const express = require("express");
+const cors = require('cors');
 const stockRealTimeService = require('./stockPrices/realTime/stockRealTime.js'); // Import the stockRealTimeService object
 
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+const allowedOrigins = [
+    'http://localhost:3000', // My local host
+    'https://stock-ex2.vercel.app', // Replace with deployed frontend domain
+];
+
+app.use(cors({
+    origin: allowedOrigins,
+    methods: ['GET'],
+    allowedHeaders: ['Content-Type', 'x-api-key'],
+}));
+
+// Middleware to protect backend with x-api-key
+app.use((req, res, next) => {
+  const clientKey = req.headers['x-api-key'];
+
+  if (!clientKey || clientKey !== process.env.ATHORIZED_API_KEY) {
+    return res.status(401).json({ error: "Unauthorized: Invalid API Key" });
+  }
+
+  next();
+});
 
 // Get all stock data
 app.get("/stocks/all", async (req, res) => {
