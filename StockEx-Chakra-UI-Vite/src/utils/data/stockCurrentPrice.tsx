@@ -43,7 +43,7 @@ export async function fetchRealTimeStocks(symbols: string[]): Promise<StockData 
         });
 
         if (!response.ok) {
-        throw new Error('Failed to fetch selected stocks');
+            throw new Error('Failed to fetch selected stocks');
         }
 
         return await response.json();

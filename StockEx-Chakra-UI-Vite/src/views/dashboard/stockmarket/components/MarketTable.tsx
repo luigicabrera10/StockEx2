@@ -128,7 +128,7 @@ export default function MarketTable(props: { tableData: any }) {
 						align='center'
 						fontSize='16px'
 						color='gray.400'>
-						PRICE PROFIT
+						PROFIT
 					</Text>
 					<Text
 						justifyContent='space-between'
@@ -140,9 +140,14 @@ export default function MarketTable(props: { tableData: any }) {
 				</Box>
 			),
 			cell: (info) => (
-				<Text color={'green'} fontSize='18px' fontWeight='700' textAlign="center">
-					{info.getValue()[0]  + ' (' + info.getValue()[1] + '%)'} 
-				</Text>
+				<Box>
+					<Text color={info.getValue()[0] >= 0 ? 'green' : 'red'} fontSize='18px' fontWeight='700' textAlign="center">
+						{info.getValue()[0].toFixed(2)} 
+					</Text>
+					<Text color={info.getValue()[1] >= 0 ? 'green' : 'red'} fontSize='18px' fontWeight='700' textAlign="center">
+						{'(' + info.getValue()[1].toFixed(2) + '%)'} 
+					</Text>
+				</Box>
 			)
 		}),
 		columnHelper.display({
@@ -225,11 +230,11 @@ export default function MarketTable(props: { tableData: any }) {
 	});
 	return (
 		<Card flexDirection='column' w='100%' px='0px' overflowX={{ sm: 'scroll', lg: 'hidden' }}>
-			<Flex px='25px' mb="8px" justifyContent='space-between' align='center'>
+			<Flex px='25px' mt="5px" mb="8px" justifyContent='space-between' align='center'>
 				<Text color={textColor} fontSize='22px' fontWeight='700' lineHeight='100%'>
 					Stock Market Prices
 				</Text>
-				<Menu />
+				{/* <Menu /> */}
 			</Flex>
 			<Box>
 				<Table variant='simple' color='gray.500' mb='24px' mt="12px">
