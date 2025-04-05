@@ -23,7 +23,11 @@ class RealTimeStockService {
     async _getFromRedis(stock) {
         if (!this.redisClient) return null;
 
+        const start = Date.now(); // Start timer
         const cachedData = await this.redisClient.get('CURRENT_'+stock);
+        const duration = Date.now() - start; // Calculate duration
+        console.log(`Redis fetch time for ${stock}: ${duration}ms`);
+
         if (cachedData) {
             try {
                 return cachedData; 
@@ -111,9 +115,13 @@ class RealTimeStockService {
     async _stockRealTimePriceApiCall(symbol) {
         console.log(`Fetching data for ${symbol}...`);
         const url = `https://finnhub.io/api/v1/quote?symbol=${symbol}&token=${this.apiKey}`;
-        
+
+        const start = Date.now(); // Start timer
         try {
             const response = await axios.get(url);
+            const duration = Date.now() - start; // Calculate duration
+            console.log(`API fetch time for ${symbol}: ${duration}ms`);
+
             return {
                 lastRefresh: DateTime.now().toISO(),
                 price: response.data.c,
@@ -125,6 +133,9 @@ class RealTimeStockService {
                 previousClose: response.data.pc,
             };
         } catch (error) {
+            const duration = Date.now() - start; // Calculate duration even on error
+            console.log(`API fetch time for ${symbol} (failed): ${duration}ms`);
+
             if (error.response?.status === 429) {
                 console.error('Rate limit exceeded for API');
             } else {
