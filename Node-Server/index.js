@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require("express");
 const cors = require('cors');
 const stockRealTimeService = require('./stockPrices/realTime/stockRealTime.js'); // Import the stockRealTimeService object
-
+const stockHistoricalService = require('./stockPrices/historical/stockHistorical.js'); // Import the stockHistoricalService object
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -55,6 +55,35 @@ app.get("/stocks", async (req, res) => {
   } catch (error) {
     console.log("Error: ", error.message);
     res.status(500).json({ error: "Could not retrieve data" });
+  }
+});
+
+// Get historical prices for a specific stock
+app.get("/stocks/historical", async (req, res) => {
+  try {
+    console.log("New request: Fetching historical prices for a stock");
+    const { symbol } = req.query; // Expecting a single stock symbol
+    if (!symbol) {
+      return res.status(400).json({ error: "No symbol provided" });
+    }
+    console.log("Symbol: ", symbol);
+    const data = await stockHistoricalService.getHistoricalPrices(symbol); // Use stockHistoricalService object
+    res.json(data);
+  } catch (error) {
+    console.log("Error: ", error.message);
+    res.status(500).json({ error: "Could not retrieve historical data" });
+  }
+});
+
+// Get preview of historical prices for all stocks
+app.get("/stocks/historical/preview", async (req, res) => {
+  try {
+    console.log("New request: Fetching preview of historical prices");
+    const data = await stockHistoricalService.getPreviewHistoricalPrices(); // Use stockHistoricalService object
+    res.json(data);
+  } catch (error) {
+    console.log("Error: ", error.message);
+    res.status(500).json({ error: "Could not retrieve preview data" });
   }
 });
 
