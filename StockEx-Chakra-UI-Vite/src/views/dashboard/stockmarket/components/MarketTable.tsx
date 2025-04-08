@@ -16,6 +16,7 @@ import Menu from '../../../../components/menu/MainMenu';
 
 // StockEx imports
 import StockIcon from '@/utils/data/StockIcon';
+import MiniChart from '@/components/charts/MiniChart';
 import { useEffect } from 'react';
 
 // type RowObj = {
@@ -32,6 +33,7 @@ type StockPriceInfo = {
 	lastClosedPrice: number;
 	volume: number,
 	priceProfit: [number, number];
+	previewPrices: number[] | undefined;
 };
  
 const columnHelper = createColumnHelper<StockPriceInfo>();
@@ -150,7 +152,7 @@ export default function MarketTable(props: { tableData: any }) {
 				</Box>
 			)
 		}),
-		columnHelper.display({
+		columnHelper.accessor('previewPrices', {
 			id: 'chart',
 			header: () => (
 				<Box>
@@ -173,13 +175,10 @@ export default function MarketTable(props: { tableData: any }) {
 			cell: (info) => (
 				<Box display='flex' justifyContent='center' alignContent='center'>
 
-					{/* <MiniChart prices={
-						historicalPrices === null ? [0.0, 0.0] :  historicalPrices[info.getValue()]
-					} /> */}
-					<Text fontSize='18px' fontWeight='700' textAlign="center">
+					<MiniChart prices={ info.getValue() ?? [0.0, 0.0] } />
+					{/* <Text fontSize='18px' fontWeight='700' textAlign="center">
 						Chart no available yet
-					</Text>
-
+					</Text> */}
 
 				</Box>
 			)
@@ -198,9 +197,6 @@ export default function MarketTable(props: { tableData: any }) {
 			cell: (info) => (
 				<Box display='flex' justifyContent='center' alignContent='center'>
 
-					{/* <MiniChart prices={
-						historicalPrices === null ? [0.0, 0.0] :  historicalPrices[info.getValue()]
-					} /> */}
 					<Text fontSize='18px' fontWeight='700' textAlign="center">
 						Trade button no available yet
 					</Text>
