@@ -1,5 +1,5 @@
 import { Icon } from '@chakra-ui/react';
-import { MdBarChart, MdPerson, MdHome, MdLock, MdOutlineShoppingCart } from 'react-icons/md';
+import { MdBarChart, MdPerson, MdHome, MdLock, MdOutlineShoppingCart, MdShowChart } from 'react-icons/md';
 
 // Admin Imports
 import MainDashboard from './views/dashboard/default';
@@ -12,6 +12,7 @@ import SignInCentered from './views/home/signIn';
 
 // StockEx imports
 import StockMarket from './views/dashboard/stockmarket';
+import StockCharts from './views/dashboard/stockCharts';
 
 const routes = [
 	{
@@ -21,35 +22,35 @@ const routes = [
 		icon: <Icon as={MdHome} width='20px' height='20px' color='inherit' />,
 		component: MainDashboard,
 	},
-	{
-		name: 'NFT Marketplace',
-		layout: '/dashboard',
-		path: '/nft-marketplace',
-		icon: <Icon as={MdOutlineShoppingCart} width='20px' height='20px' color='inherit' />,
-		component: NFTMarketplace,
-		secondary: true
-	},
-	{
-		name: 'Data Tables',
-		layout: '/dashboard',
-		icon: <Icon as={MdBarChart} width='20px' height='20px' color='inherit' />,
-		path: '/data-tables',
-		component: DataTables,
-	},
-	{
-		name: 'Profile',
-		layout: '/dashboard',
-		path: '/profile',
-		icon: <Icon as={MdPerson} width='20px' height='20px' color='inherit' />,
-		component: Profile,
-	},
-	{
-		name: 'Sign In',
-		layout: '/home',
-		path: '/sign-in',
-		icon: <Icon as={MdLock} width='20px' height='20px' color='inherit' />,
-		component: SignInCentered,
-	},
+	// {
+	// 	name: 'NFT Marketplace',
+	// 	layout: '/dashboard',
+	// 	path: '/nft-marketplace',
+	// 	icon: <Icon as={MdOutlineShoppingCart} width='20px' height='20px' color='inherit' />,
+	// 	component: NFTMarketplace,
+	// 	secondary: true
+	// },
+	// {
+	// 	name: 'Data Tables',
+	// 	layout: '/dashboard',
+	// 	icon: <Icon as={MdBarChart} width='20px' height='20px' color='inherit' />,
+	// 	path: '/data-tables',
+	// 	component: DataTables,
+	// },
+	// {
+	// 	name: 'Profile',
+	// 	layout: '/dashboard',
+	// 	path: '/profile',
+	// 	icon: <Icon as={MdPerson} width='20px' height='20px' color='inherit' />,
+	// 	component: Profile,
+	// },
+	// {
+	// 	name: 'Sign In',
+	// 	layout: '/home',
+	// 	path: '/sign-in',
+	// 	icon: <Icon as={MdLock} width='20px' height='20px' color='inherit' />,
+	// 	component: SignInCentered,
+	// },
 
 
 	// Stock Ex routes
@@ -59,6 +60,14 @@ const routes = [
 		path: '/stock-market',
 		icon: <Icon as={MdOutlineShoppingCart} width='20px' height='20px' color='inherit' />,
 		component: StockMarket,
+		secondary: true
+	},
+	{
+		name: 'Stock Chart',
+		layout: '/dashboard',
+		path: '/stock-chart',
+		icon: <Icon as={MdShowChart} width='20px' height='20px' color='inherit' />,
+		component: StockCharts,
 		secondary: true
 	},
 
