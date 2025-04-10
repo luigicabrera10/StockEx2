@@ -54,15 +54,16 @@ export default function StockCharts() {
 		<Box pt={{ base: '130px', md: '80px', xl: '80px' }} height='calc(100vh - 80px)'>
 			<SimpleGrid
 				gap='20px'
+				height="100%" // Ensure the grid takes full height
 				templateRows={{
-					base: '1fr',
-					lg: '1fr 4.7fr',
+					base: '1fr 10fr', // Equal height for both cards on smaller screens
+					lg: '1fr 10fr',   // Equal height for both cards on larger screens
 				}}
 			>
-				<Card>
+				<Card height="100%"> {/* Ensure each card takes full height */}
 					<Flex flexDirection='row' justifyContent='space-between' alignItems='center'>
 						<Flex flexDirection='row' gap='20px'>
-							<StockIcon symbol={SelectedStock} width = '110px' height = '110px' borderRadius='5px' />
+							<StockIcon symbol={SelectedStock} width='110px' height='110px' borderRadius='5px' />
 							<Flex alignContent='center' justifyContent='center' flexDirection='column' gap='7px'>
 								<Select
 									value={SelectedStock}
@@ -115,7 +116,7 @@ export default function StockCharts() {
 						</Flex>
 					</Flex>
 				</Card>
-				<Card>
+				<Card height="100%"> {/* Ensure each card takes full height */}
 					<CandleChart stock={SelectedStock} />
 				</Card>
 			</SimpleGrid>
