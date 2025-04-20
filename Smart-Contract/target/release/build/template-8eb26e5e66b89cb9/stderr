@@ -1,0 +1,4 @@
+[0m[0m[1m[32m   Compiling[0m io v0.1.3 (/home/northsoldier/Documents/Portfolio/StockEx2/Smart-Contract/io)
+[0m[0m[1m[32m   Compiling[0m template v0.1.3 (/home/northsoldier/Documents/Portfolio/StockEx2/Smart-Contract)
+[0m[0m[1m[32m   Compiling[0m template-wasm v0.1.3 (/home/northsoldier/Documents/Portfolio/StockEx2/Smart-Contract/target/release/build/template-8eb26e5e66b89cb9/out)
+[0m[0m[1m[32m    Finished[0m release [optimized] target(s) in 36.44s

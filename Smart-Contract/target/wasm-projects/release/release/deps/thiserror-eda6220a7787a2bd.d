@@ -1,0 +1,10 @@
+/home/northsoldier/Documents/Hackathons/Varathon - StockEx/StockEx-Smart-Contract/target/wasm-projects/release/release/deps/libthiserror-eda6220a7787a2bd.rmeta: /home/northsoldier/.cargo/registry/src/index.crates.io-6f17d22bba15001f/thiserror-1.0.63/src/lib.rs /home/northsoldier/.cargo/registry/src/index.crates.io-6f17d22bba15001f/thiserror-1.0.63/src/aserror.rs /home/northsoldier/.cargo/registry/src/index.crates.io-6f17d22bba15001f/thiserror-1.0.63/src/display.rs /home/northsoldier/.cargo/registry/src/index.crates.io-6f17d22bba15001f/thiserror-1.0.63/src/provide.rs
+
+/home/northsoldier/Documents/Hackathons/Varathon - StockEx/StockEx-Smart-Contract/target/wasm-projects/release/release/deps/libthiserror-eda6220a7787a2bd.rlib: /home/northsoldier/.cargo/registry/src/index.crates.io-6f17d22bba15001f/thiserror-1.0.63/src/lib.rs /home/northsoldier/.cargo/registry/src/index.crates.io-6f17d22bba15001f/thiserror-1.0.63/src/aserror.rs /home/northsoldier/.cargo/registry/src/index.crates.io-6f17d22bba15001f/thiserror-1.0.63/src/display.rs /home/northsoldier/.cargo/registry/src/index.crates.io-6f17d22bba15001f/thiserror-1.0.63/src/provide.rs
+
+/home/northsoldier/Documents/Hackathons/Varathon - StockEx/StockEx-Smart-Contract/target/wasm-projects/release/release/deps/thiserror-eda6220a7787a2bd.d: /home/northsoldier/.cargo/registry/src/index.crates.io-6f17d22bba15001f/thiserror-1.0.63/src/lib.rs /home/northsoldier/.cargo/registry/src/index.crates.io-6f17d22bba15001f/thiserror-1.0.63/src/aserror.rs /home/northsoldier/.cargo/registry/src/index.crates.io-6f17d22bba15001f/thiserror-1.0.63/src/display.rs /home/northsoldier/.cargo/registry/src/index.crates.io-6f17d22bba15001f/thiserror-1.0.63/src/provide.rs
+
+/home/northsoldier/.cargo/registry/src/index.crates.io-6f17d22bba15001f/thiserror-1.0.63/src/lib.rs:
+/home/northsoldier/.cargo/registry/src/index.crates.io-6f17d22bba15001f/thiserror-1.0.63/src/aserror.rs:
+/home/northsoldier/.cargo/registry/src/index.crates.io-6f17d22bba15001f/thiserror-1.0.63/src/display.rs:
+/home/northsoldier/.cargo/registry/src/index.crates.io-6f17d22bba15001f/thiserror-1.0.63/src/provide.rs:
