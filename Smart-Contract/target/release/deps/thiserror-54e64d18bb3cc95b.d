@@ -1,0 +1,10 @@
+/home/northsoldier/Documents/Hackathons/Varathon - StockEx/StockEx-Smart-Contract/target/release/deps/libthiserror-54e64d18bb3cc95b.rmeta: /home/northsoldier/.cargo/registry/src/index.crates.io-6f17d22bba15001f/thiserror-1.0.63/src/lib.rs /home/northsoldier/.cargo/registry/src/index.crates.io-6f17d22bba15001f/thiserror-1.0.63/src/aserror.rs /home/northsoldier/.cargo/registry/src/index.crates.io-6f17d22bba15001f/thiserror-1.0.63/src/display.rs /home/northsoldier/.cargo/registry/src/index.crates.io-6f17d22bba15001f/thiserror-1.0.63/src/provide.rs
+
+/home/northsoldier/Documents/Hackathons/Varathon - StockEx/StockEx-Smart-Contract/target/release/deps/libthiserror-54e64d18bb3cc95b.rlib: /home/northsoldier/.cargo/registry/src/index.crates.io-6f17d22bba15001f/thiserror-1.0.63/src/lib.rs /home/northsoldier/.cargo/registry/src/index.crates.io-6f17d22bba15001f/thiserror-1.0.63/src/aserror.rs /home/northsoldier/.cargo/registry/src/index.crates.io-6f17d22bba15001f/thiserror-1.0.63/src/display.rs /home/northsoldier/.cargo/registry/src/index.crates.io-6f17d22bba15001f/thiserror-1.0.63/src/provide.rs
+
+/home/northsoldier/Documents/Hackathons/Varathon - StockEx/StockEx-Smart-Contract/target/release/deps/thiserror-54e64d18bb3cc95b.d: /home/northsoldier/.cargo/registry/src/index.crates.io-6f17d22bba15001f/thiserror-1.0.63/src/lib.rs /home/northsoldier/.cargo/registry/src/index.crates.io-6f17d22bba15001f/thiserror-1.0.63/src/aserror.rs /home/northsoldier/.cargo/registry/src/index.crates.io-6f17d22bba15001f/thiserror-1.0.63/src/display.rs /home/northsoldier/.cargo/registry/src/index.crates.io-6f17d22bba15001f/thiserror-1.0.63/src/provide.rs
+
+/home/northsoldier/.cargo/registry/src/index.crates.io-6f17d22bba15001f/thiserror-1.0.63/src/lib.rs:
+/home/northsoldier/.cargo/registry/src/index.crates.io-6f17d22bba15001f/thiserror-1.0.63/src/aserror.rs:
+/home/northsoldier/.cargo/registry/src/index.crates.io-6f17d22bba15001f/thiserror-1.0.63/src/display.rs:
+/home/northsoldier/.cargo/registry/src/index.crates.io-6f17d22bba15001f/thiserror-1.0.63/src/provide.rs:

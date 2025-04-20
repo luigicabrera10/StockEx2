@@ -1,0 +1,10 @@
+/home/northsoldier/Documents/Hackathons/Varathon - StockEx/StockEx-Smart-Contract/target/wasm-projects/release/release/deps/libautocfg-26bd8f50dd7de428.rmeta: /home/northsoldier/.cargo/registry/src/index.crates.io-6f17d22bba15001f/autocfg-1.3.0/src/lib.rs /home/northsoldier/.cargo/registry/src/index.crates.io-6f17d22bba15001f/autocfg-1.3.0/src/error.rs /home/northsoldier/.cargo/registry/src/index.crates.io-6f17d22bba15001f/autocfg-1.3.0/src/rustc.rs /home/northsoldier/.cargo/registry/src/index.crates.io-6f17d22bba15001f/autocfg-1.3.0/src/version.rs
+
+/home/northsoldier/Documents/Hackathons/Varathon - StockEx/StockEx-Smart-Contract/target/wasm-projects/release/release/deps/libautocfg-26bd8f50dd7de428.rlib: /home/northsoldier/.cargo/registry/src/index.crates.io-6f17d22bba15001f/autocfg-1.3.0/src/lib.rs /home/northsoldier/.cargo/registry/src/index.crates.io-6f17d22bba15001f/autocfg-1.3.0/src/error.rs /home/northsoldier/.cargo/registry/src/index.crates.io-6f17d22bba15001f/autocfg-1.3.0/src/rustc.rs /home/northsoldier/.cargo/registry/src/index.crates.io-6f17d22bba15001f/autocfg-1.3.0/src/version.rs
+
+/home/northsoldier/Documents/Hackathons/Varathon - StockEx/StockEx-Smart-Contract/target/wasm-projects/release/release/deps/autocfg-26bd8f50dd7de428.d: /home/northsoldier/.cargo/registry/src/index.crates.io-6f17d22bba15001f/autocfg-1.3.0/src/lib.rs /home/northsoldier/.cargo/registry/src/index.crates.io-6f17d22bba15001f/autocfg-1.3.0/src/error.rs /home/northsoldier/.cargo/registry/src/index.crates.io-6f17d22bba15001f/autocfg-1.3.0/src/rustc.rs /home/northsoldier/.cargo/registry/src/index.crates.io-6f17d22bba15001f/autocfg-1.3.0/src/version.rs
+
+/home/northsoldier/.cargo/registry/src/index.crates.io-6f17d22bba15001f/autocfg-1.3.0/src/lib.rs:
+/home/northsoldier/.cargo/registry/src/index.crates.io-6f17d22bba15001f/autocfg-1.3.0/src/error.rs:
+/home/northsoldier/.cargo/registry/src/index.crates.io-6f17d22bba15001f/autocfg-1.3.0/src/rustc.rs:
+/home/northsoldier/.cargo/registry/src/index.crates.io-6f17d22bba15001f/autocfg-1.3.0/src/version.rs:

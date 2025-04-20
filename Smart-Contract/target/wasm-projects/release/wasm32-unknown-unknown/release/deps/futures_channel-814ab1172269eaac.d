@@ -1,0 +1,9 @@
+/home/northsoldier/Documents/Hackathons/Varathon - StockEx/StockEx-Smart-Contract/target/wasm-projects/release/wasm32-unknown-unknown/release/deps/libfutures_channel-814ab1172269eaac.rmeta: /home/northsoldier/.cargo/registry/src/index.crates.io-6f17d22bba15001f/futures-channel-0.3.30/src/lib.rs /home/northsoldier/.cargo/registry/src/index.crates.io-6f17d22bba15001f/futures-channel-0.3.30/src/lock.rs /home/northsoldier/.cargo/registry/src/index.crates.io-6f17d22bba15001f/futures-channel-0.3.30/src/oneshot.rs
+
+/home/northsoldier/Documents/Hackathons/Varathon - StockEx/StockEx-Smart-Contract/target/wasm-projects/release/wasm32-unknown-unknown/release/deps/libfutures_channel-814ab1172269eaac.rlib: /home/northsoldier/.cargo/registry/src/index.crates.io-6f17d22bba15001f/futures-channel-0.3.30/src/lib.rs /home/northsoldier/.cargo/registry/src/index.crates.io-6f17d22bba15001f/futures-channel-0.3.30/src/lock.rs /home/northsoldier/.cargo/registry/src/index.crates.io-6f17d22bba15001f/futures-channel-0.3.30/src/oneshot.rs
+
+/home/northsoldier/Documents/Hackathons/Varathon - StockEx/StockEx-Smart-Contract/target/wasm-projects/release/wasm32-unknown-unknown/release/deps/futures_channel-814ab1172269eaac.d: /home/northsoldier/.cargo/registry/src/index.crates.io-6f17d22bba15001f/futures-channel-0.3.30/src/lib.rs /home/northsoldier/.cargo/registry/src/index.crates.io-6f17d22bba15001f/futures-channel-0.3.30/src/lock.rs /home/northsoldier/.cargo/registry/src/index.crates.io-6f17d22bba15001f/futures-channel-0.3.30/src/oneshot.rs
+
+/home/northsoldier/.cargo/registry/src/index.crates.io-6f17d22bba15001f/futures-channel-0.3.30/src/lib.rs:
+/home/northsoldier/.cargo/registry/src/index.crates.io-6f17d22bba15001f/futures-channel-0.3.30/src/lock.rs:
+/home/northsoldier/.cargo/registry/src/index.crates.io-6f17d22bba15001f/futures-channel-0.3.30/src/oneshot.rs:

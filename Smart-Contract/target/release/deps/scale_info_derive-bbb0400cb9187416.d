@@ -1,0 +1,8 @@
+/home/northsoldier/Documents/Hackathons/Varathon - StockEx/StockEx-Smart-Contract/target/release/deps/libscale_info_derive-bbb0400cb9187416.so: /home/northsoldier/.cargo/registry/src/index.crates.io-6f17d22bba15001f/scale-info-derive-2.11.3/src/lib.rs /home/northsoldier/.cargo/registry/src/index.crates.io-6f17d22bba15001f/scale-info-derive-2.11.3/src/attr.rs /home/northsoldier/.cargo/registry/src/index.crates.io-6f17d22bba15001f/scale-info-derive-2.11.3/src/trait_bounds.rs /home/northsoldier/.cargo/registry/src/index.crates.io-6f17d22bba15001f/scale-info-derive-2.11.3/src/utils.rs
+
+/home/northsoldier/Documents/Hackathons/Varathon - StockEx/StockEx-Smart-Contract/target/release/deps/scale_info_derive-bbb0400cb9187416.d: /home/northsoldier/.cargo/registry/src/index.crates.io-6f17d22bba15001f/scale-info-derive-2.11.3/src/lib.rs /home/northsoldier/.cargo/registry/src/index.crates.io-6f17d22bba15001f/scale-info-derive-2.11.3/src/attr.rs /home/northsoldier/.cargo/registry/src/index.crates.io-6f17d22bba15001f/scale-info-derive-2.11.3/src/trait_bounds.rs /home/northsoldier/.cargo/registry/src/index.crates.io-6f17d22bba15001f/scale-info-derive-2.11.3/src/utils.rs
+
+/home/northsoldier/.cargo/registry/src/index.crates.io-6f17d22bba15001f/scale-info-derive-2.11.3/src/lib.rs:
+/home/northsoldier/.cargo/registry/src/index.crates.io-6f17d22bba15001f/scale-info-derive-2.11.3/src/attr.rs:
+/home/northsoldier/.cargo/registry/src/index.crates.io-6f17d22bba15001f/scale-info-derive-2.11.3/src/trait_bounds.rs:
+/home/northsoldier/.cargo/registry/src/index.crates.io-6f17d22bba15001f/scale-info-derive-2.11.3/src/utils.rs:
