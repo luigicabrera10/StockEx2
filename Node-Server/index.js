@@ -3,6 +3,7 @@ const express = require("express");
 const cors = require('cors');
 const stockRealTimeService = require('./stockPrices/realTime/stockRealTime.js'); // Import the stockRealTimeService object
 const stockHistoricalService = require('./stockPrices/historical/stockHistorical.js'); // Import the stockHistoricalService object
+const cryptoRealTimeService = require('./cryptoPrices/realTime/cryptoRealTime.js'); // Import the cryptoRealTimeService object
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -84,6 +85,24 @@ app.get("/stocks/historical/preview", async (req, res) => {
   } catch (error) {
     console.log("Error: ", error.message);
     res.status(500).json({ error: "Could not retrieve preview data" });
+  }
+});
+
+// Get real-time cryptocurrency prices
+app.get("/crypto", async (req, res) => {
+  try {
+    console.log("New request: Fetching real-time cryptocurrency prices");
+    const { symbols } = req.query; // Expecting a comma-separated list of symbols
+    if (!symbols) {
+      return res.status(400).json({ error: "No symbols provided" });
+    }
+    console.log("Symbols: ", symbols);
+    const cryptoList = symbols.split(",");
+    const data = await cryptoRealTimeService.getRealTimeCryptoPrices(cryptoList);
+    res.json(data);
+  } catch (error) {
+    console.log("Error: ", error.message);
+    res.status(500).json({ error: "Could not retrieve cryptocurrency data" });
   }
 });
 
