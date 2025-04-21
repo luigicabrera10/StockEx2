@@ -7,8 +7,8 @@ import { Box, Button, Flex, Grid, Link, Text, useColorModeValue, SimpleGrid } fr
 import SearchBar from './components/searchBar';
 import MarketTable from './components/MarketTable';
 
-import { fetchAllRealTimeStocks } from '@/utils/data/stockCurrentPrice';
-import { fetchHistoricalPreviewStocks } from '@/utils/data/stockHistorical';
+import { fetchAllRealTimeStocks } from '@/utils/data/stocks/stockCurrentPrice';
+import { fetchHistoricalPreviewStocks } from '@/utils/data/stocks/stockHistorical';
 
 export default function Marketplace() {
 	// Chakra Color Mode

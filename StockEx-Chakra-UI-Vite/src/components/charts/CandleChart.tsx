@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ReactApexChart from 'react-apexcharts';
 
-import { fetchHistoricalStockPrice } from '@/utils/data/stockHistorical';
+import { fetchHistoricalStockPrice } from '@/utils/data/stocks/stockHistorical';
 
 type CandleChartProps = {
    stock: string; // Accept stock ticker symbol
@@ -26,7 +26,7 @@ const CandleChart: React.FC<CandleChartProps> = ({ stock }) => {
                return entryDate >= oneYearAgo;
             });
 
-            console.log("filteredValues:", filteredValues);
+            // console.log("filteredValues:", filteredValues);
 
 
             const formattedData = filteredValues.map((entry) => ({

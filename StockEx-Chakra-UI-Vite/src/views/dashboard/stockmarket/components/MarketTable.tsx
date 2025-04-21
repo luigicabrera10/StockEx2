@@ -15,7 +15,7 @@ import Card from '../../../../components/card/Card';
 import Menu from '../../../../components/menu/MainMenu';
 
 // StockEx imports
-import StockIcon from '@/utils/data/StockIcon';
+import StockIcon from '@/utils/data/stocks/StockIcon';
 import MiniChart from '@/components/charts/MiniChart';
 import { useEffect } from 'react';
 
