@@ -22,5 +22,5 @@ export default defineConfig({
   },
   plugins: [svgr(), react(), nodePolyfills(), eslint()],
   assetsInclude: ['**/*.wasm?inline', '**/*.txt?inline'],
-  build: { outDir: 'dist' },
+  build: { outDir: 'build' },
 });

@@ -30,8 +30,9 @@ import routes from '../../routes';
 
 import { useApi, useAccount, useBalance, useBalanceFormat } from '@gear-js/react-hooks';
 import { useState } from 'react';
-import { AccountsModal } from '../../components/layout/header/account-info/accounts-modal';
-import { AccountButton } from '../../components/layout/header/account-info/account-button';
+// import { AccountsModal } from '../../components/layout/header/account-info/accounts-modal';
+// import { AccountButton } from '../../components/layout/header/account-info/account-button';
+import { Wallet } from '@gear-js/wallet-connect';
 
 import VaraLogo from '/src/assets/images/vara/vara_logo.png';
 
@@ -264,15 +265,17 @@ export default function HeaderLinks(props: { secondary: boolean }) {
 			</Menu> */}
 
 
-			{account ? (
+			{/* {account ? (
 				<AccountButton address={account.address} name={account.meta.name} onClick={openModal} />
 			) : (
 				// <Button  text="Sign in" onClick={openModal} />
 				<Button onClick={openModal} > Sign in </Button>
-			)}
+			)} */}
 
 			{/* <AccountButton address={account.address} name={account.meta.name} onClick={openModal} /> */}
-			{isModalOpen && <AccountsModal accounts={accounts} close={closeModal} />}
+			{/* {isModalOpen && <AccountsModal accounts={accounts} close={closeModal} />} */}
+
+			<Wallet theme='vara'/>
 
 			<Box marginLeft='10px'></Box>
 

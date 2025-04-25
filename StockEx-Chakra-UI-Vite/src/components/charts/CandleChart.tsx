@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ReactApexChart from 'react-apexcharts';
 
-import { fetchHistoricalStockPrice } from '@/utils/data/stockHistorical';
+import { fetchHistoricalStockPrice } from '@/utils/data/stocks/stockHistorical';
 
 type CandleChartProps = {
    stock: string; // Accept stock ticker symbol

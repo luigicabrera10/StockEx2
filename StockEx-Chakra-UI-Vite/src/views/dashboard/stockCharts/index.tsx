@@ -2,15 +2,18 @@
 import { Avatar, Box, Grid, Flex, FormLabel, Icon, Select, SimpleGrid, useColorModeValue } from '@chakra-ui/react';
 import { useState, useEffect } from 'react';
 import { Text } from '@chakra-ui/react';
-import { fetchHistoricalPreviewStocks } from '@/utils/data/stockHistorical';
-import { fetchRealTimeStocks } from '@/utils/data/stockCurrentPrice';
+import { useApi, useAccount, useBalance, useBalanceFormat } from '@gear-js/react-hooks';
+
+import { fetchHistoricalPreviewStocks } from '@/utils/data/stocks/stockHistorical';
+import { fetchRealTimeStocks } from '@/utils/data/stocks/stockCurrentPrice';
+import { fetchCryptoPrice } from '@/utils/data/currency/currencyPrice';
 
 import Card from '@/components/card/Card';
 import { ChevronDownIcon } from '@chakra-ui/icons';
 
 import CandleChart from '@/components/charts/CandleChart';
-import StockIcon from '@/utils/data/StockIcon';
-// import StockButton from './components/TradeButton'
+import StockIcon from '@/utils/data/stocks/StockIcon';
+import StockButton from './components/TradeButton'
 
 export default function StockCharts() {
 	const [allStocks, setAllStocks] = useState<string[]>([]);
@@ -19,6 +22,15 @@ export default function StockCharts() {
 	const [StockPrice, setStockPrice] = useState<number>(0);
 	const [StockProfit, setStockProfit] = useState<number>(0);
 	const [StockProfitPercent, setStockProfitPercent] = useState<number>(0);
+
+	const [VaraPrice, setVaraPrice] = useState<number>(0);
+
+	// Acount balance
+	const { account } = useAccount();
+	const { balance } = useBalance(account?.address);
+	const { getFormattedBalance } = useBalanceFormat();
+	
+	const finalBalance = balance ? parseFloat(getFormattedBalance(balance).value) : 0.0;
 
 	useEffect(() => {
 		const fetchStocks = async () => {
@@ -31,7 +43,16 @@ export default function StockCharts() {
 				}
 			}
 		};
+
+		const fetchVaraPrice = async () => {
+			const data = await fetchCryptoPrice('VARA');
+			if (data) {
+				setVaraPrice(data.price ?? 0.0);
+			}
+		}
+
 		fetchStocks();
+		fetchVaraPrice();
 	}, []);
 
 	useEffect( () => {
@@ -114,6 +135,20 @@ export default function StockCharts() {
 
 							</Flex>
 						</Flex>
+
+						<StockButton 
+							text="Trade Now!" 
+							stock={SelectedStock} 
+							price={StockPrice}
+							balance={finalBalance} 
+							prices={
+								{
+									'USD': 1.0,
+									'VARA': 1 / VaraPrice,
+								}
+							} 
+						/>
+
 					</Flex>
 				</Card>
 				<Card height="100%"> {/* Ensure each card takes full height */}
