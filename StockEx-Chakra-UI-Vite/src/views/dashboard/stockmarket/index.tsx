@@ -9,6 +9,8 @@ import MarketTable from './components/MarketTable';
 
 import { fetchAllRealTimeStocks } from '@/utils/data/stocks/stockCurrentPrice';
 import { fetchHistoricalPreviewStocks } from '@/utils/data/stocks/stockHistorical';
+import { useAccount, useBalance, useBalanceFormat } from '@gear-js/react-hooks';
+import { fetchCryptoPrice } from '@/utils/data/currency/currencyPrice';
 
 export default function Marketplace() {
 	// Chakra Color Mode
@@ -18,6 +20,15 @@ export default function Marketplace() {
 	// Search filter var
 	const [StocksPrices, setStocksPrices] = useState<any>([]);
 	const [StocksPreview, setStocksPreview] = useState<any>([]);
+
+	const [VaraPrice, setVaraPrice] = useState<number>(0);
+
+	// Acount balance
+	const { account } = useAccount();
+	const { balance } = useBalance(account?.address);
+	const { getFormattedBalance } = useBalanceFormat();
+	
+	const finalBalance = balance ? parseFloat(getFormattedBalance(balance).value) : 0.0;
 
 	useEffect(() => {
 		async function getDataRealTimeData() {
@@ -32,6 +43,14 @@ export default function Marketplace() {
 			const previewData = await fetchHistoricalPreviewStocks();
 			setStocksPreview(previewData);
 		}
+
+		const fetchVaraPrice = async () => {
+			const data = await fetchCryptoPrice('VARA');
+			if (data) {
+				setVaraPrice(data.price ?? 0.0);
+			}
+		}
+		fetchVaraPrice();
 		getDataPreviewData();
 	}, []);
 
@@ -61,6 +80,13 @@ export default function Marketplace() {
 
 				<MarketTable 
 					tableData={marketData} 
+					balance={finalBalance} 
+					prices={
+						{
+							'USD': 1.0,
+							'VARA': 1 / VaraPrice,
+						}
+					} 
 				/>
 				
 			</SimpleGrid>
