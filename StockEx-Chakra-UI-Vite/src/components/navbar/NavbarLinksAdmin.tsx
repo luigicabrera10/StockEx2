@@ -55,7 +55,7 @@ export default function HeaderLinks(props: { secondary: boolean }) {
 	);
 	const borderButton = useColorModeValue('secondaryGray.500', 'whiteAlpha.200');
 
-	const { account, accounts } = useAccount();
+	const { account } = useAccount();
 	const [isModalOpen, setIsModalOpen] = useState(false);
 
 	const { balance } = useBalance(account?.address);
@@ -185,7 +185,7 @@ export default function HeaderLinks(props: { secondary: boolean }) {
 				w='max-content'
 				onClick={toggleColorMode}>
 				<Icon
-					me='0px'
+					me='15px'
 					h='18px'
 					w='18px'
 					color={navbarIcon}
