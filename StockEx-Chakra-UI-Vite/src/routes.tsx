@@ -60,7 +60,7 @@ const routes = [
 		path: '/stock-market',
 		icon: <Icon as={MdOutlineShoppingCart} width='20px' height='20px' color='inherit' />,
 		component: StockMarket,
-		secondary: true
+		secondary: false
 	},
 	{
 		name: 'Stock Chart',
@@ -68,7 +68,7 @@ const routes = [
 		path: '/stock-chart',
 		icon: <Icon as={MdShowChart} width='20px' height='20px' color='inherit' />,
 		component: StockCharts,
-		secondary: true
+		secondary: false
 	},
 
 ];

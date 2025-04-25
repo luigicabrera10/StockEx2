@@ -15,9 +15,11 @@ import Card from '../../../../components/card/Card';
 import Menu from '../../../../components/menu/MainMenu';
 
 // StockEx imports
-import StockIcon from '@/utils/data/StockIcon';
+import StockIcon from '@/utils/data/stocks/StockIcon';
 import MiniChart from '@/components/charts/MiniChart';
 import { useEffect } from 'react';
+
+import StockButton from './TradeButton';
 
 // type RowObj = {
 // 	name: [string, boolean];
@@ -39,8 +41,8 @@ type StockPriceInfo = {
 const columnHelper = createColumnHelper<StockPriceInfo>();
 
 // const columns = columnsDataCheck;
-export default function MarketTable(props: { tableData: any }) {
-	const { tableData } = props;
+export default function MarketTable(props: { tableData: any, balance: number, prices: any }) {
+	const { tableData, balance, prices } = props;
 	const [ sorting, setSorting ] = React.useState<SortingState>([]);
 	const textColor = useColorModeValue('secondaryGray.900', 'white');
 	const borderColor = useColorModeValue('gray.200', 'whiteAlpha.100');
@@ -183,7 +185,7 @@ export default function MarketTable(props: { tableData: any }) {
 				</Box>
 			)
 		}),
-		columnHelper.accessor('stock', {
+		columnHelper.accessor(row => ({ stock: row.stock, currentPrice: row.currentPrice }), {
 			id: 'tradeButton',
 			header: () => (
 				<Text
@@ -195,13 +197,14 @@ export default function MarketTable(props: { tableData: any }) {
 				</Text>
 			),
 			cell: (info) => (
-				<Box display='flex' justifyContent='center' alignContent='center'>
-
-					<Text fontSize='18px' fontWeight='700' textAlign="center">
-						Trade button no available yet
-					</Text>
-
-
+				<Box display="flex" justifyContent="center" alignItems="center">
+					<StockButton 
+						text="Trade Now!" 
+						stock={info.getValue().stock} 
+						balance={balance} 
+						prices={prices} 
+						price={info.getValue().currentPrice} 
+					/>
 				</Box>
 			)
 		}),
@@ -285,4 +288,4 @@ export default function MarketTable(props: { tableData: any }) {
 			</Box>
 		</Card>
 	);
-} 
+}

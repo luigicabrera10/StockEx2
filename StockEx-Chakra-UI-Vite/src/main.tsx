@@ -21,8 +21,6 @@ dotenv.config();
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <ChakraProvider theme={theme}>
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
+    <App />
   </ChakraProvider>
 );
