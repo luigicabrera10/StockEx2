@@ -2,13 +2,13 @@ import { Icon } from '@chakra-ui/react';
 import { MdBarChart, MdPerson, MdHome, MdLock, MdOutlineShoppingCart, MdShowChart } from 'react-icons/md';
 
 // Admin Imports
-import MainDashboard from './views/dashboard/default';
-import NFTMarketplace from './views/dashboard/marketplace';
-import Profile from './views/dashboard/profile';
-import DataTables from './views/dashboard/dataTables';
+// import MainDashboard from './views/dashboard/default';
+// import NFTMarketplace from './views/dashboard/marketplace';
+// import Profile from './views/dashboard/profile';
+// import DataTables from './views/dashboard/dataTables';
 
 // Auth Imports
-import SignInCentered from './views/home/signIn';
+// import SignInCentered from './views/home/signIn';
 
 // StockEx imports
 import StockMarket from './views/dashboard/stockmarket';
