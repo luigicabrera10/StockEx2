@@ -13,6 +13,7 @@ import SignInCentered from './views/home/signIn';
 // StockEx imports
 import StockMarket from './views/dashboard/stockmarket';
 import StockCharts from './views/dashboard/stockCharts';
+import Portfolio from './views/dashboard/portfolio';
 
 const routes = [
 	{
@@ -20,7 +21,7 @@ const routes = [
 		layout: '/dashboard',
 		path: '/default',
 		icon: <Icon as={MdHome} width='20px' height='20px' color='inherit' />,
-		component: MainDashboard,
+		component: Portfolio,
 	},
 	// {
 	// 	name: 'NFT Marketplace',
