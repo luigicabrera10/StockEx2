@@ -595,8 +595,8 @@ export default function Portfolio() {
 					
 
 					<Box mt='10px'>
-						<FormLabel fontWeight="bold" fontSize='20px' >Operation State</FormLabel>
-						<Select id='op_state' variant='mini'mt='5px' me='0px' defaultValue={'all'} onChange={handleOperationStateChange}>
+						<FormLabel fontWeight="bold" fontSize='20px'>Operation State</FormLabel>
+						<Select id='op_state'  mt='5px' me='0px' defaultValue={'all'} onChange={handleOperationStateChange}>
 							<option value='all'>Any State</option>
 							<option value='active'>Active Operations</option>
 							<option value='closed'>Closed Operations</option>
@@ -605,7 +605,7 @@ export default function Portfolio() {
 
 					<Box>
 						<FormLabel fontWeight="bold" fontSize='20px' >Operation Type</FormLabel>
-						<Select id='op_type' variant='mini'mt='5px' me='0px' defaultValue={'all'} onChange={handleOperationTypeChange}>
+						<Select id='op_type' mt='5px' me='0px' defaultValue={'all'} onChange={handleOperationTypeChange}>
 							<option value='all'>Any Type</option>
 							<option value='buy'>Buy Operations</option>
 							<option value='sell'>Sell Operations</option>
@@ -614,7 +614,7 @@ export default function Portfolio() {
 
 					<Box>
 						<FormLabel fontWeight="bold" fontSize='20px'>Stock</FormLabel>
-						<Select id='stock_ticker' variant='mini'mt='5px' me='0px' defaultValue={'any'} onChange={handleStockChange}>
+						<Select id='stock_ticker' mt='5px' me='0px' defaultValue={'any'} onChange={handleStockChange}>
 							<option value='any'>Any Stock</option>
 							{getAllStocks(fixedOperations)}
 						</Select>
