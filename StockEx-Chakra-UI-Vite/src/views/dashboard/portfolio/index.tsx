@@ -100,8 +100,15 @@ export default function Portfolio() {
             }
         }
         fetchVaraPrice();
-		setCurrencyBalance(parseFloat(formattedBalance.value) * VaraPrice);
     }, []);
+
+	useEffect(() => {
+		// console.log("Vara Price: ", VaraPrice);
+		// console.log("Vara Balance: ", formattedBalance.value);
+		// console.log("Vara Balance: ", parseFloat(formattedBalance.value.replace(/,/g, '')));
+		// console.log("USD Balance: ", parseFloat(formattedBalance.value.replace(/,/g, '')) * VaraPrice);
+		setCurrencyBalance(parseFloat(formattedBalance.value.replace(/,/g, '')) * VaraPrice);
+	}, [formattedBalance]);
 
     const data = ReadOperations();
     console.log("RawAllOperations: ", data);

@@ -30,7 +30,7 @@ export default function StockCharts() {
 	const { balance } = useBalance(account?.address);
 	const { getFormattedBalance } = useBalanceFormat();
 	
-	const finalBalance = balance ? parseFloat(getFormattedBalance(balance).value) : 0.0;
+	const finalBalance = balance ? parseFloat(getFormattedBalance(balance).value.replace(/,/g, '')) : 0.0;
 
 	useEffect(() => {
 		const fetchStocks = async () => {
